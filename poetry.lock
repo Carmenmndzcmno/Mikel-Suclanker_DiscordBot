@@ -1001,6 +1001,21 @@ files = [
 ]
 
 [[package]]
+name = "uuid-v7"
+version = "1.0.0"
+description = "UUID v6 and v7 for Python 3.10+."
+optional = false
+python-versions = ">=3.10"
+groups = ["main"]
+files = [
+    {file = "uuid_v7-1.0.0-py3-none-any.whl", hash = "sha256:b27f8e1a90ad5c81577f8eaebf9ef67ab8b4dc8d0838c4fcc2e57fd52ebf7fff"},
+    {file = "uuid_v7-1.0.0.tar.gz", hash = "sha256:56eb79baa5c6c5cf02e9e8ce7652bda666bd7671a49fc9a3c3d4565aa7e0ba3b"},
+]
+
+[package.extras]
+test = ["black", "coverage", "flake8", "gitchangelog", "isort", "mkdocs", "mypy", "pytest", "pytest-cov"]
+
+[[package]]
 name = "yarl"
 version = "1.20.1"
 description = "Yet another URL library"
@@ -1122,4 +1137,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "a120dbf02771258ac4a87b91a9669409fa75325af78f29e9ad0b2245bcd4103f"
+content-hash = "56d5f2fe5403be7968181090a50b82b79d3e3129a58147b456f068fe6bf3be51"
