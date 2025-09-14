@@ -39,16 +39,35 @@ import os
     Basic Concepts: discord.py follows an event-oriented programming paradigm
 
 """ 
-load_dotenv() #this will load the current environment variable file
+load_dotenv() # this will load the current environment variable file
 token = os.getenv('DISCORD_TOKEN')
 
-handler = logging.FileHandler(Filename='discord.log', encoding='utf-8', mode='w') #mode w -> write mode
+# Set up logging
+handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w') # mode w -> write mode 
+logging.basicConfig(level=logging.INFO, handlers=[handler]) # mode w -> write mode
 
-#Intents are the actions that our bot will respond
+# Intents specify which events the bot will receive
 intents = discord.Intents.default()
-intents.message_content = True # we specify that the bot wants to receive the message content of the user's messages
-intents.members = True # the bot can respond different events around the discord users
+intents.message_content = True # receive the content of user messages
+intents.members = True # respond to events related to server members
 # As we expand the bot, we will be setting more variables to true.
 # All existent intents: https://discordpy.readthedocs.io/en/stable/api.html#discord.Intents
 
-bot = commands.Bot(command_prefix='!', intents=intents) # We wrote down de command prefix up to the bot
+# Initialize the bot
+bot = commands.Bot(command_prefix='!', intents=intents) # set command prefix and intents
+
+# Handling Events
+@bot.event
+async def on_ready(): # is the bot ready?
+    print(f"bipbaraberobop, {bot.user.name}")
+    #logging.info(f"Bot connected as {bot.user} (ID: {bot.user.id})")
+
+@bot.event
+async def on_member_join(member): # did someone join the discord server?
+    await member.send(f"¡Bienvenido, {member.name}")
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user: return
+
+bot.run(token)
